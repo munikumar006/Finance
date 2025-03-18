@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chit Fund Management</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Chit Fund Management</h1>
+    
+    <h2>Add New Chit</h2>
+    <form method="POST" action="/add">
+        <input type="text" name="chit_name" placeholder="Chit Name" required>
+        <input type="number" name="amount" placeholder="Amount" step="0.01" required>
+        <input type="number" name="duration" placeholder="Duration (months)" required>
+        <input type="number" name="members" placeholder="Total Members" required>
+        <button type="submit">Add Chit</button>
+    </form>
+
+    <h2>Chit List</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Amount</th>
+                <th>Duration</th>
+                <th>Members</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for chit in chits %}
+            <tr>
+                <td>{{ chit.id }}</td>
+                <td>{{ chit.chit_name }}</td>
+                <td>{{ chit.amount }}</td>
+                <td>{{ chit.duration_months }}</td>
+                <td>{{ chit.total_members }}</td>
+                <td>{{ chit.status }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
